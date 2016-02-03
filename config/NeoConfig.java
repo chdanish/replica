@@ -61,7 +61,7 @@ public class NeoConfig extends Neo4jConfiguration  {
     @Scope(value="singleton")
     GraphDatabaseService graphDatabaseService() {
     	this.log.error("Database setting up!"); 
-    	return new SpringCypherRestGraphDatabase("http://localhost:7474/db/data","neo4j", "neo4j2319");
+    	return new SpringCypherRestGraphDatabase("http://neo4j-pickme.rhcloud.com/db/data","neo4j", "neo4j2319");
     }
     
 
