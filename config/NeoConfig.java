@@ -61,12 +61,12 @@ public class NeoConfig extends Neo4jConfiguration  {
     @Scope(value="singleton")
     GraphDatabaseService graphDatabaseService() {
     	this.log.error("Database setting up!"); 
+    	new SpringCypherRestGraphDatabase("http://neo4j-pickme.rhcloud.com/db/data","neo4j", "neo4j2319").shutdown();
     	return new SpringCypherRestGraphDatabase("http://neo4j-pickme.rhcloud.com/db/data","neo4j", "neo4j2319");
     }
     
-
-   
-   @Bean
+    
+    @Bean
    @PostConstruct
     public Neo4jTemplate neo4jTemplate() {
 	   return new Neo4jTemplate(graphDatabase, transactionManager);
