@@ -1,18 +1,15 @@
 package so.pickme.replica.config;
 
-import javax.annotation.PostConstruct;
-import org.neo4j.graphdb.GraphDatabaseService;
+import org.neo4j.ogm.session.Session;
+import org.neo4j.ogm.session.SessionFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.*;
-import org.springframework.data.neo4j.config.EnableNeo4jRepositories;
 import org.springframework.data.neo4j.config.Neo4jConfiguration;
-import org.springframework.data.neo4j.core.GraphDatabase;
-import org.springframework.data.neo4j.rest.SpringCypherRestGraphDatabase;
-import org.springframework.data.neo4j.support.Neo4jTemplate;
-import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.data.neo4j.repository.config.EnableNeo4jRepositories;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.data.neo4j.server.Neo4jServer;
+import org.springframework.data.neo4j.server.RemoteServer;
 
 /*Okay, so here are the relevant options:
 
@@ -47,33 +44,27 @@ http://jexp.de/blog/2014/12/spring-data-neo4j-improving-remoting-performance/
 @EnableNeo4jRepositories(basePackages = "so.pickme.repository")
 public class NeoConfig extends Neo4jConfiguration  {
 	private final Logger log = LoggerFactory.getLogger(NeoConfig.class);
-    public NeoConfig() {
-        setBasePackage("so.pickme.repository");
-    }
-   @Autowired
-    GraphDatabase graphDatabase;
-
-    @Autowired
-    private PlatformTransactionManager transactionManager;
-   
-    
-    @Bean(destroyMethod = "shutdown")
-    @Scope(value="singleton")
-    GraphDatabaseService graphDatabaseService() {
-    	this.log.error("Database setting up!"); 
-    	return new SpringCypherRestGraphDatabase("http://localhost:7474/db/data","neo4j", "neo4j2319");
-    }
+ 
     
 
-   
-   @Bean
-   @PostConstruct
-    public Neo4jTemplate neo4jTemplate() {
-	   return new Neo4jTemplate(graphDatabase, transactionManager);
-    /*return new Neo4jTemplate(graphDatabaseService());
-     * Was causing connection timeouts at the first load attempt of application
-     * */
+    @Bean
+    public Neo4jServer neo4jServer() {
+        return new RemoteServer("http://neo4j-pickme.rhcloud.com/db/data","neo4j", "neo4j2319");
     }
+
+    @Bean
+    public SessionFactory getSessionFactory() {
+        // with domain entity base package(s)
+        return new SessionFactory("so.pickme.replica.domain");
+    }
+
+    // needed for session in view in web-applications
+    @Bean
+    @Scope(value = "session", proxyMode = ScopedProxyMode.TARGET_CLASS)
+    public Session getSession() throws Exception {
+        return super.getSession();
+    }
+
 	
 
 }  

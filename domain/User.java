@@ -9,21 +9,19 @@ import javax.persistence.Column;
 
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
-import org.neo4j.graphdb.Direction;
-import org.springframework.data.neo4j.annotation.Fetch;
-import org.springframework.data.neo4j.annotation.GraphId;
-import org.springframework.data.neo4j.annotation.Indexed;
-import org.springframework.data.neo4j.annotation.NodeEntity;
-import org.springframework.data.neo4j.annotation.RelatedTo;
+import org.neo4j.ogm.annotation.GraphId;
+import org.neo4j.ogm.annotation.Index;
+import org.neo4j.ogm.annotation.NodeEntity;
+import org.neo4j.ogm.annotation.Relationship;
 
 @NodeEntity
 public class User {
 	
 	@GraphId
-	@Indexed
+	@Index
 	Long  id;
 	
-	@Indexed
+	@Index
 	private Date createdAt;
 
 	@NotEmpty(message = "Last name is required.")
@@ -48,8 +46,7 @@ public class User {
 	@Column(nullable = false)
     private Set<String> role = new HashSet<String>();
 	
-	@Fetch
-	@RelatedTo(type="FRIEND", direction=Direction.BOTH)
+	@Relationship(type="FRIEND", direction=Relationship.UNDIRECTED)
 	public Set<User> friends;
 /*	private List<Route> route;*/
 	public User() {
