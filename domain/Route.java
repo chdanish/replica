@@ -1,30 +1,21 @@
 package so.pickme.replica.domain;
 
 import java.util.Date;
-
 import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import org.neo4j.ogm.annotation.NodeEntity;
+import org.neo4j.ogm.annotation.Relationship;
+import so.pickme.replica.domain.Entity;
 
-import org.codehaus.jackson.annotate.JsonBackReference;
-@Entity
-public class Route {
+@NodeEntity
+public class Route extends Entity {
 	
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(unique=true)
-	private long id;
+
 	
-	@JsonBackReference
-	@ManyToOne
-    @JoinColumn(name="user", nullable=false)
-	private User user;
+	@Relationship(type="OWNEDBY", direction=Relationship.UNDIRECTED)
+	private User ownby;
+	
 	
 	
 	private long routegroupid;
@@ -43,32 +34,22 @@ public class Route {
 	@Column(name = "last_updated")
 	protected Date lastUpdatedOn;
 
+	
+
+
+
 	/**
-	 * @return the id
+	 * @return the ownby
 	 */
-	public long getId() {
-		return id;
+	public User getOwnby() {
+		return ownby;
 	}
 
 	/**
-	 * @param id the id to set
+	 * @param ownby the ownby to set
 	 */
-	public void setId(long id) {
-		this.id = id;
-	}
-
-	/**
-	 * @return the user
-	 */
-	public User getUser() {
-		return user;
-	}
-
-	/**
-	 * @param user the user to set
-	 */
-	public void setUser(User user) {
-		this.user = user;
+	public void setOwnby(User ownby) {
+		this.ownby = ownby;
 	}
 
 	/**

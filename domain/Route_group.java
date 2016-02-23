@@ -1,5 +1,7 @@
 package so.pickme.replica.domain;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,8 +12,12 @@ import javax.persistence.OneToOne;
 import org.codehaus.jackson.annotate.JsonBackReference;
 
 @Entity
-public class Route_group {
+public class Route_group implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1588978461066408187L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(unique=true)
