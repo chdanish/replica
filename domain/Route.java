@@ -179,6 +179,34 @@ public class Route extends Entity {
 	public void setLastUpdatedOn(Date lastUpdatedOn) {
 		this.lastUpdatedOn = lastUpdatedOn;
 	}
+
+	/**
+	 * @return the title
+	 */
+	public String getTitle() {
+		return title;
+	}
+
+	/**
+	 * @param title the title to set
+	 */
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	/**
+	 * @return the discription
+	 */
+	public String getDiscription() {
+		return discription;
+	}
+
+	/**
+	 * @param discription the discription to set
+	 */
+	public void setDiscription(String discription) {
+		this.discription = discription;
+	}
 	
 	
 	
