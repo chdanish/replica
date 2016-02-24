@@ -16,7 +16,9 @@ public class Route extends Entity {
 	@Relationship(type="OWNEDBY", direction=Relationship.UNDIRECTED)
 	private User ownby;
 	
+	private String title;
 	
+	private String discription;
 	
 	private long routegroupid;
 	private String startpointLAT;
