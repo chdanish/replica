@@ -20,6 +20,9 @@ public class Route extends Entity {
 	
 	private String discription;
 	
+	private String startpointaddress;
+	private String destinationpointaddress;
+	
 	private long routegroupid;
 	private String startpointLAT;
 	private String startpointLONG;
@@ -206,6 +209,34 @@ public class Route extends Entity {
 	 */
 	public void setDiscription(String discription) {
 		this.discription = discription;
+	}
+
+	/**
+	 * @return the startpointaddress
+	 */
+	public String getStartpointaddress() {
+		return startpointaddress;
+	}
+
+	/**
+	 * @param startpointaddress the startpointaddress to set
+	 */
+	public void setStartpointaddress(String startpointaddress) {
+		this.startpointaddress = startpointaddress;
+	}
+
+	/**
+	 * @return the destinationpointaddress
+	 */
+	public String getDestinationpointaddress() {
+		return destinationpointaddress;
+	}
+
+	/**
+	 * @param destinationpointaddress the destinationpointaddress to set
+	 */
+	public void setDestinationpointaddress(String destinationpointaddress) {
+		this.destinationpointaddress = destinationpointaddress;
 	}
 	
 	
