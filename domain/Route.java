@@ -238,6 +238,22 @@ public class Route extends Entity {
 	public void setDestinationpointaddress(String destinationpointaddress) {
 		this.destinationpointaddress = destinationpointaddress;
 	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "Route [ownby=" + ownby + ", title=" + title + ", discription="
+				+ discription + ", startpointaddress=" + startpointaddress
+				+ ", destinationpointaddress=" + destinationpointaddress
+				+ ", routegroupid=" + routegroupid + ", startpointLAT="
+				+ startpointLAT + ", startpointLONG=" + startpointLONG
+				+ ", destpointLAT=" + destpointLAT + ", destpointLONG="
+				+ destpointLONG + ", routename=" + routename + ", shareType="
+				+ shareType + ", createdOn=" + createdOn + ", lastUpdatedOn="
+				+ lastUpdatedOn + "]";
+	}
 	
 	
 	

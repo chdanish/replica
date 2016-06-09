@@ -3,8 +3,11 @@ package so.pickme.replica.domain;
 
 import java.util.Date;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Set;
+
 import javax.persistence.Column;
+
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.neo4j.ogm.annotation.NodeEntity;
@@ -49,13 +52,9 @@ public class User extends Entity {
 	@Column(nullable = false)
     private Set<String> role = new HashSet<String>();
 	
-	/*@RelatedTo(type="FRIEND", direction=Direction.BOTH)*/
+
 	@Relationship(type="FRIEND", direction=Relationship.UNDIRECTED)
 	public Set<User> friends;
-
-	
-	@Relationship(type="MYROUTES", direction=Relationship.UNDIRECTED)
-	public Set<Route> myroutes;
 	
 	
 	
@@ -64,13 +63,40 @@ public class User extends Entity {
 	
 
 	//@com.fasterxml.jackson.annotation.JsonIgnore //need to be tested
-	public void myFriends(User friend
+	public void addFriend(User friendUser
 			){
 		if(friends == null) {
 			friends = new HashSet<User>();
 		}
-		friends.add(friend);
+		friends.add(friendUser);
 	}
+	
+	public Boolean deleteFriend(User friendUser
+			){
+		if(friends != null) {
+			Iterator<User> iterator = friends.iterator();
+			while (iterator.hasNext()) {
+			    User element = iterator.next();
+			    if (element  == friendUser) {
+			        iterator.remove();
+			        return true;
+			    }
+			}
+			
+		}
+			return false;
+	}
+
+	
+	/**
+	 * @return the friends
+	 */
+	public Set<User> getFriends() {
+		return friends;
+	}
+
+
+	
 	
 	public User(User user) {
 		/*this.id = user.id;*/
