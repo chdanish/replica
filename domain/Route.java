@@ -22,14 +22,16 @@ public class Route extends Entity {
 	
 	private String startpointaddress;
 	private String destinationpointaddress;
-	
-	private long routegroupid;
 	private String startpointLAT;
 	private String startpointLONG;
 	private String destpointLAT;
 	private String destpointLONG;	
 	private String routename;	
 	private String shareType;
+	
+	private long routegroupid;
+	private long distance; //mills
+	private long duration;
 
 
 	@Temporal(TemporalType.DATE)
@@ -38,10 +40,6 @@ public class Route extends Entity {
 
 	@Column(name = "last_updated")
 	protected Date lastUpdatedOn;
-
-	
-
-
 
 	/**
 	 * @return the ownby
@@ -58,6 +56,62 @@ public class Route extends Entity {
 	}
 
 	/**
+	 * @return the title
+	 */
+	public String getTitle() {
+		return title;
+	}
+
+	/**
+	 * @param title the title to set
+	 */
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	/**
+	 * @return the discription
+	 */
+	public String getDiscription() {
+		return discription;
+	}
+
+	/**
+	 * @param discription the discription to set
+	 */
+	public void setDiscription(String discription) {
+		this.discription = discription;
+	}
+
+	/**
+	 * @return the startpointaddress
+	 */
+	public String getStartpointaddress() {
+		return startpointaddress;
+	}
+
+	/**
+	 * @param startpointaddress the startpointaddress to set
+	 */
+	public void setStartpointaddress(String startpointaddress) {
+		this.startpointaddress = startpointaddress;
+	}
+
+	/**
+	 * @return the destinationpointaddress
+	 */
+	public String getDestinationpointaddress() {
+		return destinationpointaddress;
+	}
+
+	/**
+	 * @param destinationpointaddress the destinationpointaddress to set
+	 */
+	public void setDestinationpointaddress(String destinationpointaddress) {
+		this.destinationpointaddress = destinationpointaddress;
+	}
+
+	/**
 	 * @return the routegroupid
 	 */
 	public long getRoutegroupid() {
@@ -69,6 +123,34 @@ public class Route extends Entity {
 	 */
 	public void setRoutegroupid(long routegroupid) {
 		this.routegroupid = routegroupid;
+	}
+
+	/**
+	 * @return the distance
+	 */
+	public long getDistance() {
+		return distance;
+	}
+
+	/**
+	 * @param distance the distance to set
+	 */
+	public void setDistance(long distance) {
+		this.distance = distance;
+	}
+
+	/**
+	 * @return the duration
+	 */
+	public long getDuration() {
+		return duration;
+	}
+
+	/**
+	 * @param duration the duration to set
+	 */
+	public void setDuration(long duration) {
+		this.duration = duration;
 	}
 
 	/**
@@ -183,85 +265,20 @@ public class Route extends Entity {
 		this.lastUpdatedOn = lastUpdatedOn;
 	}
 
-	/**
-	 * @return the title
-	 */
-	public String getTitle() {
-		return title;
-	}
-
-	/**
-	 * @param title the title to set
-	 */
-	public void setTitle(String title) {
-		this.title = title;
-	}
-
-	/**
-	 * @return the discription
-	 */
-	public String getDiscription() {
-		return discription;
-	}
-
-	/**
-	 * @param discription the discription to set
-	 */
-	public void setDiscription(String discription) {
-		this.discription = discription;
-	}
-
-	/**
-	 * @return the startpointaddress
-	 */
-	public String getStartpointaddress() {
-		return startpointaddress;
-	}
-
-	/**
-	 * @param startpointaddress the startpointaddress to set
-	 */
-	public void setStartpointaddress(String startpointaddress) {
-		this.startpointaddress = startpointaddress;
-	}
-
-	/**
-	 * @return the destinationpointaddress
-	 */
-	public String getDestinationpointaddress() {
-		return destinationpointaddress;
-	}
-
-	/**
-	 * @param destinationpointaddress the destinationpointaddress to set
-	 */
-	public void setDestinationpointaddress(String destinationpointaddress) {
-		this.destinationpointaddress = destinationpointaddress;
-	}
-
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
 	public String toString() {
-		return "Route [ownby=" + ownby + ", title=" + title + ", discription="
-				+ discription + ", startpointaddress=" + startpointaddress
-				+ ", destinationpointaddress=" + destinationpointaddress
-				+ ", routegroupid=" + routegroupid + ", startpointLAT="
-				+ startpointLAT + ", startpointLONG=" + startpointLONG
-				+ ", destpointLAT=" + destpointLAT + ", destpointLONG="
-				+ destpointLONG + ", routename=" + routename + ", shareType="
-				+ shareType + ", createdOn=" + createdOn + ", lastUpdatedOn="
-				+ lastUpdatedOn + "]";
+		return "Route [ownby=" + ownby + ", title=" + title + ", discription=" + discription + ", startpointaddress="
+				+ startpointaddress + ", destinationpointaddress=" + destinationpointaddress + ", routegroupid="
+				+ routegroupid + ", distance=" + distance + ", duration=" + duration + ", startpointLAT="
+				+ startpointLAT + ", startpointLONG=" + startpointLONG + ", destpointLAT=" + destpointLAT
+				+ ", destpointLONG=" + destpointLONG + ", routename=" + routename + ", shareType=" + shareType
+				+ ", createdOn=" + createdOn + ", lastUpdatedOn=" + lastUpdatedOn + "]";
 	}
-	
-	
-	
-	
-	
-	
 
-
+	
 
 
 }

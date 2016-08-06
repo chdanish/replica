@@ -25,6 +25,7 @@ public class Pickmeup extends Entity {
 	Date deadlinetocommit; //(calander date ,time)
 	long tripstarttime_long; //  (calander date ,time)	
 	long deadlinetocommit_long; //(calander date ,time)
+	long esttimetoreachdestination; //(trip start time  + route duration )
 	Pickupreqstatus status;
 	TimeZone timezone;
 	Boolean roaming;
@@ -140,6 +141,20 @@ public class Pickmeup extends Entity {
 	}
 
 	/**
+	 * @return the esttimetoreachdestination
+	 */
+	public long getEsttimetoreachdestination() {
+		return esttimetoreachdestination;
+	}
+
+	/**
+	 * @param esttimetoreachdestination the esttimetoreachdestination to set
+	 */
+	public void setEsttimetoreachdestination(long esttimetoreachdestination) {
+		this.esttimetoreachdestination = esttimetoreachdestination;
+	}
+
+	/**
 	 * @return the timezone
 	 */
 	public TimeZone getTimezone() {
@@ -214,9 +229,9 @@ public class Pickmeup extends Entity {
 	public String toString() {
 		return "Pickmeup [from=" + from + ", route=" + route + ", to=" + to + ", tripstarttime=" + tripstarttime
 				+ ", deadlinetocommit=" + deadlinetocommit + ", tripstarttime_long=" + tripstarttime_long
-				+ ", deadlinetocommit_long=" + deadlinetocommit_long + ", timezone=" + timezone + ", roaming=" + roaming
+				+ ", deadlinetocommit_long=" + deadlinetocommit_long + ", esttimetoreachdestination="
+				+ esttimetoreachdestination + ", status=" + status + ", timezone=" + timezone + ", roaming=" + roaming
 				+ ", commitreq=" + commitreq + ", commitlock=" + commitlock + "]";
 	}
-	
-	
+
 }
